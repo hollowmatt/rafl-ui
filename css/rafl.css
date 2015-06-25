@@ -2,3 +2,8 @@
 	border: thin;
 	border-color: red;
 }
+
+.buffer {
+  padding: 5px;
+  margin: 10px;
+}
