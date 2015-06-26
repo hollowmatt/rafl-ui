@@ -7,3 +7,12 @@
   padding: 5px;
   margin: 10px;
 }
+
+.item-list {
+  list-style-type: none;
+}
+
+.li {
+  display: list-item;
+  text-align: -webkit-match-parent;
+}
