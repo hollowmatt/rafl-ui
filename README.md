@@ -28,5 +28,5 @@ git clone git@github.com:hollowmatt/rafl-ui.git
 prompt$ python -m SimpleHTTPServer 8000
 ```
 - Using your browser
-  * go to http://localhost:8000, this should take you to the index page of the app (in fact, the only page)
+  * go to http://localhost:8000, this should take you to the index page of the app (if you want to run the tests, navigate to http://localhost:8000/test.html)
 
