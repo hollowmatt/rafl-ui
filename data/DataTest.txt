@@ -1,0 +1,415 @@
+Rafl Me: Test Data:
+===================
+
+USERS:
+------
+
+1) Create User (POST):
+http://localhost:8080/raflme/api/users
+
+{
+"password": "123456",
+"gender": "m",
+"firstName": "Matt",
+"lastName": "Holloway",
+"phone": "6503800540",
+"email": "hollowmatt@gmail.com"
+}
+
+Result:
+{
+    "type": "userResponse",
+    "errors": [],
+    "model": {
+        "email": "hollowmatt@gmail.com",
+        "firstName": "Matt",
+        "gender": "m",
+        "id": "55a313e33c813d083e475d35",
+        "lastName": "Holloway",
+        "password": "FILTERED",
+        "phone": "6503800540"
+    }
+}
+
+2) Update User by ID (PUT)
+http://localhost:8080/raflme/api/users/55a313e33c813d083e475d35
+
+{
+"password": "abcdef"
+}
+
+Result:
+{
+    "type": "userResponse",
+    "errors": [],
+    "model": {
+        "id": "55a313e33c813d083e475d35",
+        "password": "FILTERED"
+    }
+}
+
+3) Get User by ID (GET)
+http://localhost:8080/raflme/api/users/55a313e33c813d083e475d35
+
+Result:
+{
+    "type": "userResponse",
+    "errors": [],
+    "model": {
+        "created": "2015-07-12T21:26:59.4",
+        "email": "hollowmatt@gmail.com",
+        "firstName": "Matt",
+        "gender": "m",
+        "id": "55a313e33c813d083e475d35",
+        "lastName": "Holloway",
+        "password": "FILTERED",
+        "phone": "6503800540",
+        "status": "active",
+        "updated": "2015-07-12T21:29:32.582"
+    }
+}
+
+4) Get User by eMail (GET)
+http://localhost:8080/raflme/api/users?email=hollowmatt@gmail.com
+
+Result: 
+{
+    "type": "userListResponse",
+    "errors": [],
+    "model": [
+        {
+            "created": "2015-07-12T21:26:59.4",
+            "email": "hollowmatt@gmail.com",
+            "firstName": "Matt",
+            "gender": "m",
+            "id": "55a313e33c813d083e475d35",
+            "lastName": "Holloway",
+            "password": "FILTERED",
+            "phone": "6503800540",
+            "status": "active",
+            "updated": "2015-07-12T21:29:32.582"
+        }
+    ]
+}
+
+5) Get All Users (GET)
+
+Result:
+{
+    "type": "userResponse",
+    "errors": [
+        {
+            "code": 30,
+            "description": "Dao Error : UsersDao.findById failed : [all] :invalid hexadecimal representation of an ObjectId: [all]"
+        }
+    ],
+    "model": null
+}
+
+
+ORGANIZATIONS:
+--------------
+
+1) Create Organization (POST)
+http://localhost:8080/raflme/api/organizations
+
+{
+"userId": "55a313e33c813d083e475d35",
+"name": "Silicon Valley Humance Society",
+"address1": "901 Ames Ave",
+"address2": "",
+"city": "Milpitas",
+"state": "CA",
+"zipcode": "95035",
+"country": "USA"
+}
+
+Result:
+{
+    "type": "organizationResponse",
+    "errors": [],
+    "model": {
+        "address1": "901 Ames Ave",
+        "address2": "",
+        "city": "Milpitas",
+        "country": "USA",
+        "created": "2015-07-12T21:35:47.657",
+        "id": "55a315f33c813d083e475d37",
+        "name": "Silicon Valley Humance Society",
+        "state": "CA",
+        "updated": "2015-07-12T21:35:47.657",
+        "zipcode": "95035"
+    }
+}
+
+2) Update Organization (PUT)
+http://localhost:8080/raflme/api/organizations/55a315f33c813d083e475d37
+
+{
+"country": "United States"
+}
+
+Result:
+{
+    "type": "organizationResponse",
+    "errors": [],
+    "model": {
+        "country": "United States",
+        "id": "55a315f33c813d083e475d37",
+        "updated": "2015-07-12T21:38:09.473"
+    }
+}
+
+
+3) Get Organization (GET)
+http://localhost:8080/raflme/api/organizations/55a315f33c813d083e475d37
+
+Result:
+{
+    "type": "organizationResponse",
+    "errors": [],
+    "model": {
+        "address1": "901 Ames Ave",
+        "address2": "",
+        "city": "Milpitas",
+        "country": "United States",
+        "created": "2015-07-12T21:35:47.657",
+        "id": "55a315f33c813d083e475d37",
+        "name": "Silicon Valley Humance Society",
+        "state": "CA",
+        "updated": "2015-07-12T21:38:09.473",
+        "zipcode": "95035"
+    }
+}
+
+4) Get All Organizations (GET)
+<not yet completed>
+
+AD LISTINGS
+-----------
+
+1) Create Ad Listing (POST)
+http://localhost:8080/raflme/api/listings
+
+{
+"ownerId": "55a313e33c813d083e475d35",
+"title": "Raffling my monitor 24 inches.",
+"description": "Giving away my old monitor for a good cause.",
+"type": "raffle",
+"photoPaths": ["photo1.jpg", "photo2.jpg"],
+"maxWinners": 2,
+"timezoneName": "America/Los_Angeles",
+"expiry": "2015-07-12T08:30:00"
+}
+
+Result:
+
+{
+    "type": "adListingResponse",
+    "errors": [],
+    "model": {
+        "created": "2015-07-12T21:42:05.05",
+        "description": "Giving away my old monitor for a good cause.",
+        "expiry": "2015-07-12T08:30:00",
+        "id": "55a3176d3c813d083e475d38",
+        "maxWinners": 2,
+        "ownerId": "55a313e33c813d083e475d35",
+        "photoPaths": [
+            "photo1.jpg",
+            "photo2.jpg"
+        ],
+        "timezoneName": "America/Los_Angeles",
+        "title": "Raffling my monitor 24 inches.",
+        "type": "raffle",
+        "updated": "2015-07-12T21:42:05.05",
+        "utcExpiry": 1436715000000
+    }
+}
+
+2) Update Ad Listing (PUT)
+http://localhost:8080/raflme/api/listings/55a3176d3c813d083e475d38
+
+{
+"description": "Giving away my old monitor for a really good cause."
+}
+
+Result:
+{
+    "type": "adListingResponse",
+    "errors": [],
+    "model": {
+        "description": "Giving away my old monitor for a really good cause.",
+        "id": "55a3176d3c813d083e475d38",
+        "type": "raffle",
+        "updated": "2015-07-12T21:43:13.754",
+        "utcExpiry": 0
+    }
+}
+
+3) Get Ad Listing by ID (GET)
+http://localhost:8080/raflme/api/listings/55a3176d3c813d083e475d38
+
+Result:
+{
+    "type": "adListingResponse",
+    "errors": [],
+    "model": {
+        "created": "2015-07-12T21:42:05.05",
+        "description": "Giving away my old monitor for a really good cause.",
+        "expiry": "2015-07-12T08:30:00",
+        "id": "55a3176d3c813d083e475d38",
+        "maxWinners": 2,
+        "ownerId": "55a313e33c813d083e475d35",
+        "photoPaths": [
+            "photo1.jpg",
+            "photo2.jpg"
+        ],
+        "status": "new",
+        "timezoneName": "America/Los_Angeles",
+        "title": "Raffling my monitor 24 inches.",
+        "type": "raffle",
+        "updated": "2015-07-12T21:43:13.754",
+        "utcExpiry": 1436715000000
+    }
+}
+
+4) Get All Ad Listings (GET)
+http://localhost:8080/raflme/api/listings/all
+
+result:
+{
+    "type": "adListingListResponse",
+    "errors": [],
+    "model": [
+        {
+            "created": "2015-07-12T21:42:05.05",
+            "description": "Giving away my old monitor for a really good cause.",
+            "expiry": "2015-07-12T08:30:00",
+            "id": "55a3176d3c813d083e475d38",
+            "maxWinners": 2,
+            "ownerId": "55a313e33c813d083e475d35",
+            "photoPaths": [
+                "photo1.jpg",
+                "photo2.jpg"
+            ],
+            "status": "new",
+            "timezoneName": "America/Los_Angeles",
+            "title": "Raffling my monitor 24 inches.",
+            "type": "raffle",
+            "updated": "2015-07-12T21:43:13.754",
+            "utcExpiry": 1436715000000
+        },
+        {
+            "created": "2015-07-12T21:47:02.199",
+            "description": "Giving away my Toyota Celica 1980 for a good cause.",
+            "expiry": "2015-06-28T16:15:29.111-04:00",
+            "id": "55a318963c813d12296720c5",
+            "maxWinners": 2,
+            "ownerId": "559dbd4dccf94c220cb32ed7",
+            "photoPaths": [
+                "photo1.jpg",
+                "photo2.jpg"
+            ],
+            "status": "new",
+            "timezoneName": "UTC",
+            "title": "Raffling my Car",
+            "type": "raffle",
+            "updated": "2015-07-12T21:47:02.199",
+            "utcExpiry": 0
+        }
+    ]
+}
+
+ENTRIES
+-------
+
+1) Create Ad Listing Entry (POST)
+http://localhost:8080/raflme/api/listingEntries
+
+{
+"userId": "55a313e33c813d083e475d35",
+"adListingId": "55a3176d3c813d083e475d38",
+"organizationId": "55a315f33c813d083e475d37",
+"price": 2
+}
+
+Result:
+{
+    "type": "adListingEntryResponse",
+    "errors": [],
+    "model": {
+        "adListingId": "55a3176d3c813d083e475d38",
+        "created": "2015-07-12T21:54:38.323",
+        "id": "55a31a5e3c813d12296720c6",
+        "price": 2,
+        "updated": "2015-07-12T21:54:38.323",
+        "userId": "55a313e33c813d083e475d35",
+        "winner": false
+    }
+}
+
+2) Update Entry (PUT)
+http://localhost:8080/raflme/api/listingEntries/55a31a5e3c813d12296720c6
+
+{
+"price": 3
+}
+
+Result:
+{
+    "type": "adListingEntryResponse",
+    "errors": [],
+    "model": {
+        "id": "55a31a5e3c813d12296720c6",
+        "price": 3,
+        "updated": "2015-07-12T21:55:50.361"
+    }
+}
+
+3) Get Entry By ID (GET)
+http://localhost:8080/raflme/api/listingEntries/55a31a5e3c813d12296720c6
+
+Result:
+{
+    "type": "adListingEntryResponse",
+    "errors": [],
+    "model": {
+        "adListingId": "55a3176d3c813d083e475d38",
+        "created": "2015-07-12T21:54:38.323",
+        "id": "55a31a5e3c813d12296720c6",
+        "price": 3,
+        "updated": "2015-07-12T21:55:50.361",
+        "userId": "55a313e33c813d083e475d35",
+        "winner": false
+    }
+}
+
+4) Get all Entries for Listing (GET)
+http://localhost:8080/raflme/api/listingEntries?adListingId=55a3176d3c813d083e475d38
+
+Result:
+{
+    "type": "adListingEntryListResponse",
+    "errors": [],
+    "model": [
+        {
+            "adListingId": "55a3176d3c813d083e475d38",
+            "created": "2015-07-12T21:54:38.323",
+            "id": "55a31a5e3c813d12296720c6",
+            "price": 3,
+            "updated": "2015-07-12T21:55:50.361",
+            "userId": "55a313e33c813d083e475d35",
+            "winner": false
+        },
+        {
+            "adListingId": "55a3176d3c813d083e475d38",
+            "created": "2015-07-12T21:58:32.836",
+            "id": "55a31b483c813d12296720c7",
+            "price": 4,
+            "updated": "2015-07-12T21:58:32.836",
+            "userId": "55a315ae3c813d083e475d36",
+            "winner": false
+        }
+    ]
+}
+
